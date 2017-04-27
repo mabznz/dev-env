@@ -1,0 +1,21 @@
+---
+- hosts: workstations
+  remote_user: byron
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Add atom ppa repository
+    apt_repository:
+      repo: 'ppa:webupd8team/atom'
+      codename: 'xenial'
+      state: present
+
+  - name: Install atom
+    apt:
+      name: atom
+      state: present
+
+  - name: Install git
+    apt:
+      name: git
+      state: present 
