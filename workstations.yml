@@ -4,6 +4,12 @@
   become: yes
   become_method: sudo
   tasks:
+  - name: Install ssh key for user byron
+    authorized_key:
+      user: byron
+      key: "{{ lookup('file', '/home/byron/.ssh/id_rsa.pub')}}"
+      state: present
+
   - name: Add atom ppa repository
     apt_repository:
       repo: 'ppa:webupd8team/atom'
@@ -18,4 +24,17 @@
   - name: Install git
     apt:
       name: git
-      state: present 
+      state: present
+
+  - name: Install curl
+    apt:
+      name: curl
+      state: present
+
+  - name: Get nodejs from Ubuntu binary distributions repository
+    shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+
+  - name: Install nodejs
+    apt:
+      name: nodejs
+      state: present
