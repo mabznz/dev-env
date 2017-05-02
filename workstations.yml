@@ -1,5 +1,7 @@
 ---
 - hosts: workstations
+  roles:
+     - ansible-role-mysql
   remote_user: byron
   become: yes
   become_method: sudo
