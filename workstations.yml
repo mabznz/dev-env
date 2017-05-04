@@ -1,7 +1,7 @@
 ---
 - hosts: workstations
   roles:
-     - ansible-role-mysql
+     - mariadb
   remote_user: byron
   become: yes
   become_method: sudo
@@ -39,4 +39,9 @@
   - name: Install nodejs
     apt:
       name: nodejs
+      state: present
+
+  - name: Install Clementine
+    apt:
+      name: clementine
       state: present
